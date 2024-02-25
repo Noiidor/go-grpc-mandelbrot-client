@@ -1,4 +1,4 @@
-PROJECT_NAME = go-grpc-mandelbrot-client
+PROJECT_NAME = main
 PROJECT_PATH = cmd/$(PROJECT_NAME).go
 
 .PHONY:run
