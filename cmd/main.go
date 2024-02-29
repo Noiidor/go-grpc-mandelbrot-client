@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
+	pb "github.com/Noiidor/go-grpc-mandelbrot-client/internal/proto"
 	"github.com/Noiidor/go-grpc-mandelbrot-client/pkg/client"
-	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 func main() {
@@ -17,7 +17,15 @@ func main() {
 		log.Fatalf("Cant create gRPC client: %v", err)
 	}
 
-	img, err := client.GetImage(context.Background(), new(emptypb.Empty))
+	mandelSettings := pb.MandelbrotSettings{
+		Width:   2000,
+		Height:  1000,
+		Zoom:    1487573,
+		CenterX: -0.226266648,
+		CenterY: 1.11617444,
+	}
+
+	img, err := client.GetImage(context.Background(), &mandelSettings)
 	if err != nil {
 		log.Fatalf("Cannot get image: %v", err)
 	}
